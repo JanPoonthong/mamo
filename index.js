@@ -9,12 +9,13 @@ function fillCircle(context, x, y, radius, color="red") {
     const canvas = document.getElementById("game");
     const radius = 69;
     const context = canvas.getContext("2d");
+    const speed = 100
 
     let start;
     let x = radius + 10;
     let y = radius + 10;
-    let deltaX = 100;
-    let deltaY = 100;
+    let deltaX = speed;
+    let deltaY = speed;
 
     function step(timestamp) {
         if (start === undefined) {
