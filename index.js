@@ -15,8 +15,8 @@ function fillCircle(context, x, y, radius, color="red") {
     let start;
     let x = width / 2;
     let y = height / 2;
-    const deltaX = 100;
-    const deltaY = 100;
+    let deltaX = 100;
+    let deltaY = 100;
 
     function step(timestamp) {
         if (start === undefined) {
@@ -26,8 +26,11 @@ function fillCircle(context, x, y, radius, color="red") {
         // drawing circle near to eachother
         start = timestamp;
 
-        x += deltaX * deltaT
-        y += deltaY * deltaT
+        if (x + radius >= width  || x - radius <= 0) deltaX = -deltaX;
+        if (y + radius >= height || y - radius <= 0) deltaY = -deltaY;
+
+        x += deltaX * deltaT;
+        y += deltaY * deltaT;
 
         context.clearRect(0, 0, width, height);
         fillCircle(context, x, y, radius, "purple");
