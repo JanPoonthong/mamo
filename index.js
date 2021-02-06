@@ -4,6 +4,7 @@ function fillCircle(context, x, y, radius, color="red") {
     context.fillStyle = color;
     context.fill();
 }
+
 (() => {
     const canvas = document.getElementById("game");
     const width = canvas.width;
@@ -11,6 +12,24 @@ function fillCircle(context, x, y, radius, color="red") {
     const radius = 69;
     const context = canvas.getContext("2d");
 
-    fillCircle(context, width / 2, height / 2, radius);
+    let start;
+    let x = width / 2;
+    let y = height / 2;
+    const deltaX = 100;
+    const deltaY = 100;
 
+    function step(timestamp) {
+        if (start === undefined) {
+            start = timestamp;
+        }
+        const deltaT= (timestamp - start) / 1000.0;
+
+        x += deltaX * deltaT
+        y += deltaY * deltaT
+        fillCircle(context, x, y, radius, "purple");
+
+        window.requestAnimationFrame(step);
+    }
+
+    window.requestAnimationFrame(step);
 })();
