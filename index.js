@@ -23,9 +23,13 @@ function fillCircle(context, x, y, radius, color="red") {
             start = timestamp;
         }
         const deltaT= (timestamp - start) / 1000.0;
+        // drawing circle near to eachother
+        start = timestamp;
 
         x += deltaX * deltaT
         y += deltaY * deltaT
+
+        context.clearRect(0, 0, width, height);
         fillCircle(context, x, y, radius, "purple");
 
         window.requestAnimationFrame(step);
