@@ -7,16 +7,12 @@ function fillCircle(context, x, y, radius, color="red") {
 
 (() => {
     const canvas = document.getElementById("game");
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-    canvas.width = width;
-    canvas.height = height;
     const radius = 69;
     const context = canvas.getContext("2d");
 
     let start;
-    let x = width / 2;
-    let y = height / 2;
+    let x = radius + 10;
+    let y = radius + 10;
     let deltaX = 100;
     let deltaY = 100;
 
@@ -25,8 +21,12 @@ function fillCircle(context, x, y, radius, color="red") {
             start = timestamp;
         }
         const deltaT= (timestamp - start) / 1000.0;
-        // drawing circle near to each other
         start = timestamp;
+
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
 
         if (x + radius >= width  || x - radius <= 0) deltaX = -deltaX;
         if (y + radius >= height || y - radius <= 0) deltaY = -deltaY;
